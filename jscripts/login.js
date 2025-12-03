@@ -1,93 +1,74 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('.login-form');
-  const emailInput = document.getElementById('email');
-  const passwordInput = document.getElementById('password');
-  const passwordToggle = document.querySelector('.password-toggle');
-  const loginBtn = document.querySelector('.login-btn');
-  const socialBtns = document.querySelectorAll('.social-btn');
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-  // Password visibility toggle
-  if (passwordToggle) {
-    passwordToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      const icon = passwordToggle.querySelector('i');
+const firebaseConfig = {
+  apiKey: "AIzaSyBEFCfRwjnkfOBvnIEch0lDbAIB9cyVCNY",
+  authDomain: "ostangek.firebaseapp.com",
+  projectId: "ostangek",
+  storageBucket: "ostangek.firebasestorage.app",
+  messagingSenderId: "609103081490",
+  appId: "1:609103081490:web:49159005342d820b47e8cb",
+  measurementId: "G-8WN4PR8E3D"
+};
 
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-      } else {
-        passwordInput.type = 'password';
-        icon.classList.add('fa-eye');
-        icon.classList.remove('fa-eye-slash');
-      }
-    });
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+
+const passField = document.getElementById('password');
+const showPass = document.querySelector('.password-toggle');
+const loginBtn = document.getElementById('login');
+const emailInput = document.getElementById('email');
+const errorMsg = document.querySelectorAll('.input-error')[1]; 
+const form = document.querySelector('.login-form');
+
+showPass.addEventListener('click', (e) => {
+  e.preventDefault();
+  const icon = showPass.querySelector('i');
+  if (passField.type === 'password') {
+    passField.type = 'text';
+    icon.classList.replace('fa-eye', 'fa-eye-slash');
+  } else {
+    passField.type = 'password';
+    icon.classList.replace('fa-eye-slash', 'fa-eye');
+  }
+});
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errorMsg.textContent = '';
+  errorMsg.classList.remove('show');
+
+  const email = emailInput.value.trim();
+  const password = passField.value.trim();
+
+  if (!email && !password) {
+    errorMsg.textContent = 'Please fill in both email and password!';
+    errorMsg.classList.add('show');
+    return;
+  }
+  if (!email) {
+    errorMsg.textContent = 'Please enter a valid email!';
+    errorMsg.classList.add('show');
+    return;
+  }
+  if (!password) {
+    errorMsg.textContent = 'Please enter a password!';
+    errorMsg.classList.add('show');
+    return;
   }
 
-  // Form submission
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let isValid = true;
+  loginBtn.disabled = true;
+  loginBtn.innerHTML = '<span>Signing in...</span><i class="fas fa-spinner fa-spin"></i>';
 
-    // Clear previous errors
-    document.querySelectorAll('.input-error').forEach(error => {
-      error.classList.remove('show');
-    });
-
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailInput.value)) {
-      showError(emailInput, 'Please enter a valid email address');
-      isValid = false;
-    }
-
-    // Validate password
-    if (passwordInput.value.length < 6) {
-      showError(passwordInput, 'Password must be at least 6 characters');
-      isValid = false;
-    }
-
-    if (isValid) {
-      handleLogin();
-    }
-  });
-
-  function handleLogin() {
-    loginBtn.disabled = true;
-    loginBtn.innerHTML = '<span>Signing in...</span><i class="fas fa-spinner fa-spin"></i>';
-
-    // Simulate API call
-    setTimeout(() => {
-      loginBtn.disabled = false;
-      loginBtn.innerHTML = '<span>Sign In</span><i class="fas fa-arrow-right"></i>';
-      alert('Login successful! (Demo)');
-      form.reset();
-    }, 2000);
-  }
-
-  function showError(input, message) {
-    const errorElement = input.parentElement.querySelector('.input-error');
-    if (errorElement) {
-      errorElement.textContent = message;
-      errorElement.classList.add('show');
-    }
-  }
-
-  // Social login handlers
-  socialBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const provider = btn.classList[1]; // google-btn, github-btn, etc.
-      alert(`Login with ${provider.replace('-btn', '').toUpperCase()} (Demo)`);
-    });
-  });
-
-  // Forgot password link
-  const forgotLink = document.querySelector('.forgot-password');
-  if (forgotLink) {
-    forgotLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      alert('Password reset link sent to your email! (Demo)');
-    });
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    window.location.href = '/htmls/home.html';
+  } catch (err) {
+    errorMsg.textContent = 'Email or Password is INCORRECT!';
+    errorMsg.classList.add('show');
+    loginBtn.disabled = false;
+    loginBtn.innerHTML = '<span>Sign In</span><i class="fas fa-arrow-right"></i>';
   }
 });
