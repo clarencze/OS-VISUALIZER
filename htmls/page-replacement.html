@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Page Replacement — OS Visualizer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/algorithm.css" />
+</head>
+<body>
+  <video autoplay loop muted playsinline class="hero-video">
+    <source src="../visuals/background.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <header class="algo-header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="home.html" class="back-link">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        <h1 class="algo-title">Page Replacement</h1>
+        <p class="algo-subtitle">Virtual Memory Page Replacement Visualizer</p>
+      </div>
+      <button id="btn-logout" class="btn btn-logout">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <main class="algo-main">
+    <div class="container">
+      <section class="algo-section">
+        <h2 class="section-title">Select Algorithm</h2>
+        <div class="algo-selector">
+          <button class="algo-btn active" data-algo="fifo">
+            <i class="fas fa-hourglass"></i>
+            <span>FIFO</span>
+          </button>
+          <button class="algo-btn" data-algo="lru">
+            <i class="fas fa-history"></i>
+            <span>LRU</span>
+          </button>
+          <button class="algo-btn" data-algo="optimal">
+            <i class="fas fa-brain"></i>
+            <span>Optimal</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="input-section">
+        <h2 class="section-title">Configure Memory</h2>
+        <div class="input-form">
+          <div class="form-group">
+            <label for="num-frames">Number of Frames</label>
+            <input type="number" id="num-frames" placeholder="3" min="1" value="3" />
+          </div>
+          <div class="form-group">
+            <label for="page-sequence">Page Sequence (comma-separated)</label>
+            <input type="text" id="page-sequence" placeholder="e.g., 1,2,3,4,1,2,5,1,2,3,4,5" />
+          </div>
+          <button id="run-page-algo" class="btn btn-primary">
+            <i class="fas fa-play"></i> Run Algorithm
+          </button>
+        </div>
+      </section>
+
+      <section class="results-section" id="results-section" style="display: none;">
+        <h2 class="section-title">Results</h2>
+
+        <div class="results-grid">
+          <div class="result-card">
+            <h3>Page Faults</h3>
+            <div class="result-value" id="page-faults">0</div>
+          </div>
+          <div class="result-card">
+            <h3>Page Hits</h3>
+            <div class="result-value" id="page-hits">0</div>
+          </div>
+          <div class="result-card">
+            <h3>Hit Ratio</h3>
+            <div class="result-value" id="hit-ratio">0%</div>
+          </div>
+        </div>
+
+        <div class="memory-timeline">
+          <h3>Memory State Timeline</h3>
+          <div class="timeline-container" id="timeline-container"></div>
+        </div>
+
+        <div class="scheduling-table-container">
+          <h3>Detailed Analysis</h3>
+          <table class="scheduling-table">
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>Page</th>
+                <th>Memory</th>
+                <th>Status</th>
+                <th>Faults</th>
+              </tr>
+            </thead>
+            <tbody id="analysis-tbody">
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="algo-footer">
+    <div class="container">
+      <p>&copy; 2025 OS Visualizer. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../jscripts/history-utils.js" defer></script>
+  <script src="../jscripts/page-replacement.js" defer></script>
+</body>
+</html>

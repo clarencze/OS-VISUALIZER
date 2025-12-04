@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scheduling Algorithm — OS Visualizer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/algorithm.css" />
+</head>
+<body>
+  <video autoplay loop muted playsinline class="hero-video">
+    <source src="../visuals/background.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <header class="algo-header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="home.html" class="back-link">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        <h1 class="algo-title">Scheduling Algorithm</h1>
+        <p class="algo-subtitle">CPU Process Scheduling Visualizer</p>
+      </div>
+      <button id="btn-logout" class="btn btn-logout">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <main class="algo-main">
+    <div class="container">
+      <section class="algo-section">
+        <h2 class="section-title">Select Algorithm</h2>
+        <div class="algo-selector">
+          <button class="algo-btn active" data-algo="fcfs">
+            <i class="fas fa-list"></i>
+            <span>FCFS</span>
+          </button>
+          <button class="algo-btn" data-algo="sjf">
+            <i class="fas fa-sort-amount-down"></i>
+            <span>SJF</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="input-section">
+        <h2 class="section-title">Configure Processes</h2>
+        <div class="input-form">
+          <div class="form-group">
+            <label for="process-name">Process Name</label>
+            <input type="text" id="process-name" placeholder="e.g., P1" />
+          </div>
+          <div class="form-group">
+            <label for="arrival-time">Arrival Time</label>
+            <input type="number" id="arrival-time" placeholder="0" min="0" value="0" />
+          </div>
+          <div class="form-group">
+            <label for="burst-time">Burst Time</label>
+            <input type="number" id="burst-time" placeholder="5" min="1" />
+          </div>
+          <button id="add-process" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add Process
+          </button>
+        </div>
+
+        <div class="process-table-container">
+          <h3>Processes</h3>
+          <table class="process-table">
+            <thead>
+              <tr>
+                <th>Process</th>
+                <th>Arrival Time</th>
+                <th>Burst Time</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="process-tbody">
+              <tr class="empty-row">
+                <td colspan="4" style="text-align: center; color: #9aa3ad;">No processes added yet</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="form-actions">
+          <button id="run-algorithm" class="btn btn-success" disabled>
+            <i class="fas fa-play"></i> Run Algorithm
+          </button>
+          <button id="clear-processes" class="btn btn-danger">
+            <i class="fas fa-trash"></i> Clear All
+          </button>
+        </div>
+      </section>
+
+      <section class="results-section" id="results-section" style="display: none;">
+        <h2 class="section-title">Results</h2>
+
+        <div class="results-grid">
+          <div class="result-card">
+            <h3>Average Waiting Time</h3>
+            <div class="result-value" id="avg-wait">0 ms</div>
+          </div>
+          <div class="result-card">
+            <h3>Average Turnaround Time</h3>
+            <div class="result-value" id="avg-turnaround">0 ms</div>
+          </div>
+          <div class="result-card">
+            <h3>Total Time</h3>
+            <div class="result-value" id="total-time">0 ms</div>
+          </div>
+        </div>
+
+        <div class="gantt-section">
+          <h3>Gantt Chart</h3>
+          <div class="gantt-chart" id="gantt-chart"></div>
+        </div>
+
+        <div class="scheduling-table-container">
+          <h3>Scheduling Details</h3>
+          <table class="scheduling-table">
+            <thead>
+              <tr>
+                <th>Process</th>
+                <th>Arrival</th>
+                <th>Burst</th>
+                <th>Completion</th>
+                <th>Turnaround</th>
+                <th>Waiting</th>
+              </tr>
+            </thead>
+            <tbody id="scheduling-tbody">
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="algo-footer">
+    <div class="container">
+      <p>&copy; 2025 OS Visualizer. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../jscripts/history-utils.js" defer></script>
+  <script src="../jscripts/scheduling.js" defer></script>
+</body>
+</html>
