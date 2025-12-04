@@ -1,3 +1,29 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBEFCfRwjnkfOBvnIEch0lDbAIB9cyVCNY",
+  authDomain: "ostangek.firebaseapp.com",
+  projectId: "ostangek",
+  storageBucket: "ostangek.firebasestorage.app",
+  messagingSenderId: "609103081490",
+  appId: "1:609103081490:web:49159005342d820b47e8cb",
+  measurementId: "G-8WN4PR8E3D"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Protect page: redirect if not logged in
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "/htmls/login.html"; // redirect logged-out users
+  }
+});
+
+
 /*
   Page Replacement Algorithm - FIFO, LRU, Optimal
   Using cleaner simulation with FIFO pointer and LRU time tracking
