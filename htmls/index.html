@@ -6,6 +6,7 @@
     <title>OS Visualizer - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="../css/style.css">
+    <script type="module" src="../jscripts/script.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -21,9 +22,9 @@
                 <span></span>
             </button>
             <ul class="nav-menu">
-                <li><a href="#" class="nav-item active">Home</a></li>
-                <li><a href="#explore-section" class="nav-item">Explore</a></li>
-                <li><a href="#team-section" class="nav-item">Team</a></li>
+                <li><a href="#" class="nav-item ">Home</a></li>
+                <li><a href="#explore-section" class="nav-item ">Explore</a></li>
+                <li><a href="#team-section" class="nav-item ">Team</a></li>
                 <li><a href="../htmls/login.html" class="nav-item nav-btn">Sign In</a></li>
             </ul>
         </div>
@@ -51,158 +52,146 @@
         </div>
     </section>
 
-    <!-- Explore Section -->
+    <!-- Explore Section (includes Inventor, Features, Timeline) -->
     <section id="explore-section" class="card-section">
-        <div class="container">
-            <div class="card card-primary">
-                <div class="card-body">
-                    <h2 class="card-title">The Evolution of Operating Systems</h2>
-                    <p class="card-text">
-                        The evolution of operating systems began in the 1950s with simple batch processing systems. Over time, OS technology advanced to include multitasking, graphical interfaces, and complex memory management. Today, operating systems power everything — from mobile devices to supercomputers.
-                    </p>
-                </div>
-            </div>
+    <div class="container">
+        <div class="card card-primary">
+        <div class="card-body">
+            <h2 class="card-title">The Evolution of Operating Systems</h2>
+            <p class="card-text">
+            The evolution of operating systems began in the 1950s with simple batch processing systems. Over time, OS technology advanced to include multitasking, graphical interfaces, and complex memory management. Today, operating systems power everything — from mobile devices to supercomputers.
+            </p>
         </div>
-    </section>
+        </div>
+    </div>
 
-    <!-- Inventor Section -->
-    <section class="inventor-section">
+    <!-- Inventor subsection -->
+    <div class="inventor-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Key Innovator</h2>
-                <div class="title-underline"></div>
+        <div class="section-header">
+            <h2 class="section-title">Key Innovator</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="inventor-card">
+            <div class="inventor-image">
+            <img src="../visuals/inventor.png" alt="Gary Kildall" class="inventor-photo">
             </div>
-            <div class="inventor-card">
-                <div class="inventor-image">
-                    <img src="../visuals/inventor.png" alt="Gary Kildall" class="inventor-photo">
+            <div class="inventor-content">
+            <h3 class="inventor-name">Gary Kildall</h3>
+            <p class="inventor-role">Creator of CP/M Operating System</p>
+            <p class="inventor-description">
+                Gary Kildall was a pioneering computer scientist who created CP/M (Control Program for Microcomputers), one of the first widely used operating systems for personal computers. His work laid the foundation for modern PC operating systems.
+            </p>
+            <div class="inventor-stats">
+                <div class="stat">
+                <span class="stat-number">1974</span>
+                <span class="stat-label">CP/M Created</span>
                 </div>
-                <div class="inventor-content">
-                    <h3 class="inventor-name">Gary Kildall</h3>
-                    <p class="inventor-role">Creator of CP/M Operating System</p>
-                    <p class="inventor-description">
-                        Gary Kildall was a pioneering computer scientist who created CP/M (Control Program for Microcomputers), one of the first widely used operating systems for personal computers. His work laid the foundation for modern PC operating systems.
-                    </p>
-                    <div class="inventor-stats">
-                        <div class="stat">
-                            <span class="stat-number">1974</span>
-                            <span class="stat-label">CP/M Created</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Years Legacy</span>
-                        </div>
-                    </div>
+                <div class="stat">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Years Legacy</span>
                 </div>
+            </div>
             </div>
         </div>
-    </section>
+        </div>
+    </div>
 
-    <!-- OS Evolution Features Section -->
-    <section class="features-section">
+    <!-- Features subsection -->
+    <div class="features-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">OS Evolution</h2>
-                <div class="title-underline"></div>
+        <div class="section-header">
+            <h2 class="section-title">OS Evolution</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+            <h3>Batch Processing</h3>
+            <p>Early mainframe systems processing jobs sequentially</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3>Batch Processing</h3>
-                    <p>Early mainframe systems processing jobs sequentially</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-window-restore"></i>
-                    </div>
-                    <h3>Multitasking</h3>
-                    <p>Multiple programs running simultaneously on a single system</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>Distributed Systems</h3>
-                    <p>Computing resources spread across multiple networked machines</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <h3>Microkernel Architecture</h3>
-                    <p>Modern OS design with minimal core functionality</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Security & Virtualization</h3>
-                    <p>Advanced protection mechanisms and virtual machine support</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile & IoT</h3>
-                    <p>Operating systems optimized for portable and embedded devices</p>
-                </div>
+            <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-window-restore"></i></div>
+            <h3>Multitasking</h3>
+            <p>Multiple programs running simultaneously on a single system</p>
+            </div>
+            <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-cloud"></i></div>
+            <h3>Distributed Systems</h3>
+            <p>Computing resources spread across multiple networked machines</p>
+            </div>
+            <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-microchip"></i></div>
+            <h3>Microkernel Architecture</h3>
+            <p>Modern OS design with minimal core functionality</p>
+            </div>
+            <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Security & Virtualization</h3>
+            <p>Advanced protection mechanisms and virtual machine support</p>
+            </div>
+            <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Mobile & IoT</h3>
+            <p>Operating systems optimized for portable and embedded devices</p>
             </div>
         </div>
-    </section>
+        </div>
+    </div>
 
-    <!-- Timeline Section -->
-    <section class="timeline-section">
+    <!-- Timeline subsection -->
+    <div class="timeline-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Historical Timeline</h2>
-                <div class="title-underline"></div>
+        <div class="section-header">
+            <h2 class="section-title">Historical Timeline</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+            <div class="timeline-date">1950s</div>
+            <div class="timeline-content">
+                <h4>Batch Processing Era</h4>
+                <p>UNIVAC and IBM mainframes dominate computing</p>
             </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">1950s</div>
-                    <div class="timeline-content">
-                        <h4>Batch Processing Era</h4>
-                        <p>UNIVAC and IBM mainframes dominate computing</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">1970s</div>
-                    <div class="timeline-content">
-                        <h4>Unix & CP/M</h4>
-                        <p>Portable operating systems emerge for mini and microcomputers</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">1980s</div>
-                    <div class="timeline-content">
-                        <h4>Personal Computing</h4>
-                        <p>MS-DOS and Apple Macintosh bring OS to consumer market</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">1990s</div>
-                    <div class="timeline-content">
-                        <h4>Graphical Interfaces</h4>
-                        <p>Windows 95 and Linux emerge as dominant platforms</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2000s</div>
-                    <div class="timeline-content">
-                        <h4>Cloud & Virtualization</h4>
-                        <p>Internet-scale systems and virtual machine technology</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2020s</div>
-                    <div class="timeline-content">
-                        <h4>AI & Edge Computing</h4>
-                        <p>OS innovations for AI workloads and edge devices</p>
-                    </div>
-                </div>
+            </div>
+            <div class="timeline-item">
+            <div class="timeline-date">1970s</div>
+            <div class="timeline-content">
+                <h4>Unix & CP/M</h4>
+                <p>Portable operating systems emerge for mini and microcomputers</p>
+            </div>
+            </div>
+            <div class="timeline-item">
+            <div class="timeline-date">1980s</div>
+            <div class="timeline-content">
+                <h4>Personal Computing</h4>
+                <p>MS-DOS and Apple Macintosh bring OS to consumer market</p>
+            </div>
+            </div>
+            <div class="timeline-item">
+            <div class="timeline-date">1990s</div>
+            <div class="timeline-content">
+                <h4>Graphical Interfaces</h4>
+                <p>Windows 95 and Linux emerge as dominant platforms</p>
+            </div>
+            </div>
+            <div class="timeline-item">
+            <div class="timeline-date">2000s</div>
+            <div class="timeline-content">
+                <h4>Cloud & Virtualization</h4>
+                <p>Internet-scale systems and virtual machine technology</p>
+            </div>
+            </div>
+            <div class="timeline-item">
+            <div class="timeline-date">2020s</div>
+            <div class="timeline-content">
+                <h4>AI & Edge Computing</h4>
+                <p>OS innovations for AI workloads and edge devices</p>
+            </div>
             </div>
         </div>
+        </div>
+    </div>
     </section>
 
     <!-- Team/Members Section -->
@@ -331,6 +320,5 @@
         </div>
     </footer>
 
-    <script src="../jscripts/script.js"></script>
 </body>
 </html>
