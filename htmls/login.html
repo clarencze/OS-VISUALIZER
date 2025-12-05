@@ -1,128 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - OS History</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="/css/login.css">
-    <script type="module" src="/jscripts/login.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - OS History</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/login.css" />
 </head>
 <body>
-    <!-- Background Video -->
-    <video autoplay loop muted playsinline class="bg-video">
-        <source src="/visuals/background.mp4" type="video/mp4">
-    </video>
+  <!-- Background Video -->
+  <video autoplay loop muted playsinline class="bg-video">
+      <source src="../visuals/background.mp4" type="video/mp4">
+  </video>
 
-    <div class="overlay"></div>
+  <div class="overlay"></div>
 
-    <!-- Main Container -->
-    <div class="container-main">
-        <!-- Logo Section -->
-        <div class="logo-section">
-            <a href="/htmls/index.html" class="logo-link">
-                <i class="fas fa-server"></i>
-                <span>OS History</span>
-            </a>
-        </div>
-
-        <!-- Login Box -->
-        <div class="login-box">
-            <div class="login-header">
-                <h1 class="login-title">Welcome Back</h1>
-                <p class="login-subtitle">Sign in to your account</p>
-            </div>
-
-            <form class="login-form">
-                <!-- Email Input -->
-                <div class="input-group">
-                    <label for="email" class="input-label">
-                        <i class="fas fa-envelope"></i>
-                        Email Address
-                    </label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        class="input-field" 
-                        placeholder="your@email.com"
-                        required
-                    >
-                    <span class="input-error"></span>
-                </div>
-
-                <!-- Password Input -->
-                <div class="input-group">
-                    <div class="password-header">
-                        <label for="password" class="input-label">
-                            <i class="fas fa-lock"></i>
-                            Password
-                        </label>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
-                    </div>
-                    <div class="password-wrapper">
-                        <input 
-                            type="password" 
-                            id="password" 
-                            class="input-field" 
-                            placeholder="••••••••"
-                            required
-                            style="width: 100%;"
-                        >
-                        <button type="button" class="password-toggle" aria-label="Toggle password">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                    <span class="input-error"></span>
-                </div>
-
-                <!-- Remember Me Checkbox -->
-                <div class="checkbox-group">
-                    <input type="checkbox" id="remember" class="remember-checkbox">
-                    <label for="remember" class="remember-label">Remember me</label>
-                </div>
-
-                <!-- Login Button -->
-                <button type="submit" id="login" class="login-btn">
-                    <span>Sign In</span>
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-            </form>
-
-            <!-- Divider -->
-            <div class="divider">
-                <span>Or continue with</span>
-            </div>
-
-            <!-- Social Login -->
-            <div class="social-login">
-                <button type="button" class="social-btn google-btn" aria-label="Login with Google">
-                    <i class="fab fa-google"></i>
-                </button>
-                <button type="button" class="social-btn github-btn" aria-label="Login with GitHub">
-                    <i class="fab fa-github"></i>
-                </button>
-                <button type="button" class="social-btn twitter-btn" aria-label="Login with Twitter">
-                    <i class="fab fa-twitter"></i>
-                </button>
-            </div>
-
-            <!-- Register Link -->
-            <div class="auth-footer">
-                <p class="auth-text">
-                    Don't have an account? 
-                    <a href="/htmls/register.html" class="auth-link">Create one</a>
-                </p>
-            </div>
-
-            <!-- Back to Home -->
-            <div class="back-link">
-                <a href="/htmls/index.html" class="back-btn">
-                    <i class="fas fa-arrow-left"></i>
-                    Back to Home
-                </a>
-            </div>
-        </div>
+  <!-- Main Container -->
+  <div class="container-main">
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <a href="../htmls/index.html" class="logo-link">
+        <i class="fas fa-server"></i>
+        <span>OS History</span>
+      </a>
     </div>
 
+    <!-- Login Box -->
+    <div class="login-box">
+      <div class="login-header">
+        <h1 class="login-title">Welcome Back</h1>
+        <p class="login-subtitle">Sign in to your account</p>
+      </div>
+
+      <form id="login-form" class="login-form">
+        <div class="input-group">
+          <label for="email" class="input-label">
+            <i class="fas fa-envelope"></i>
+            Email Address
+          </label>
+          <input type="email" id="email" class="input-field" placeholder="you@email.com" required>
+          <span class="input-error" id="email-error"></span>
+        </div>
+
+        <div class="input-group">
+          <div class="password-header">
+            <label for="password" class="input-label">
+              <i class="fas fa-lock"></i>
+              Password
+            </label>
+            <!-- changed to navigate to a separate page -->
+            <a href="forgot-password.html" id="forgot-link" class="forgot-password">Forgot Password?</a>
+          </div>
+          <div class="password-wrapper">
+            <input type="password" id="password" class="input-field" placeholder="••••••••" required style="width:100%;">
+            <button type="button" class="password-toggle" aria-label="Toggle password">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <span class="input-error" id="password-error"></span>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="remember" class="remember-checkbox">
+          <label for="remember" class="remember-label">Remember me</label>
+        </div>
+
+        <button type="submit" id="login" class="login-btn">
+          <span>Sign In</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <div class="divider"><span>Or continue with</span></div>
+
+      <div class="social-login">
+        <button type="button" class="social-btn google-btn" aria-label="Login with Google"><i class="fab fa-google"></i></button>
+        <button type="button" class="social-btn github-btn" aria-label="Login with GitHub"><i class="fab fa-github"></i></button>
+        <button type="button" class="social-btn twitter-btn" aria-label="Login with Twitter"><i class="fab fa-twitter"></i></button>
+      </div>
+
+      <div class="auth-footer">
+        <p class="auth-text">Don't have an account? <a href="../htmls/register.html" class="auth-link">Create one</a></p>
+      </div>
+
+      <div class="back-link">
+        <a href="../htmls/index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../jscripts/login.js" defer></script>
 </body>
 </html>
