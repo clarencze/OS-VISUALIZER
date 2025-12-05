@@ -215,8 +215,7 @@ body {
 
 .password-toggle {
   position: absolute;
-  top: 3.8rem;
-  right: 1rem;
+  right: 12px;
   background: none;
   border: none;
   color: var(--text-muted);
