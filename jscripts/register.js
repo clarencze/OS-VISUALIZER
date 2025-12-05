@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, sendEmailVerification, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getFirestore, collection, query, where, getDocs, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -65,34 +65,65 @@ document.getElementById('registrationForm').addEventListener('submit', async e =
         if (!nameSnap.empty) { showError("Name already taken!"); return; }
         if (!emailSnap.empty) { showError("Email already registered!"); return; }
 
-        const userCredential = await createUserWithEmailAndPassword(auth,email.value,password.value);
+        // Create account immediately
+        const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
         const user = userCredential.user;
 
-        // Set displayName in Firebase Auth
-        await updateProfile(user, {
-            displayName: fullname.value
-        });
+        // Set display name in Firebase Auth
+        await updateProfile(user, { displayName: fullname.value });
 
-        await setDoc(doc(db,'users',user.uid), {
-            uid: user.uid,
+        // Save user data to Firestore
+        await setDoc(doc(db, 'users', user.uid), {
             displayName: fullname.value,
-            email: user.email
+            email: email.value,
+            createdAt: new Date()
         });
 
-        localStorage.setItem('userName', fullname.value);
+        // Send verification email
+        await sendEmailVerification(user);
 
-        window.location.href = "/htmls/home.html";
+        // Store user data temporarily for after verification
+        sessionStorage.setItem('pendingRegistration', JSON.stringify({
+            uid: user.uid,
+            fullname: fullname.value
+        }));
+
+        showError('Verification email sent! Check your email and click the link to complete registration.', true);
+        
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> Waiting for email verification...</span>';
+        
+        // Poll Firebase to check if email is verified
+        const checkVerification = setInterval(async () => {
+            await user.reload(); // Refresh user object from Firebase
+            
+            if (user.emailVerified) {
+                clearInterval(checkVerification);
+                // Store user name in localStorage for greeting
+                localStorage.setItem('userName', fullname.value);
+                // Clear pending registration
+                sessionStorage.removeItem('pendingRegistration');
+                // Redirect to home
+                window.location.href = "/htmls/home.html";
+            }
+        }, 2000); // Check every 2 seconds
 
     } catch(err) {
         console.error('Registration error:', err);
         console.error('Error code:', err.code);
         console.error('Error message:', err.message);
         showError(err.message || "Account creation failed!");
+        submitBtn.disabled = false;
     }
 });
 
-function showError(msg){
+function showError(msg, isSuccess = false){
     errorMsg.textContent = msg;
+    if (isSuccess) {
+        errorMsg.style.color = '#10b981';
+    } else {
+        errorMsg.style.color = '';
+    }
     submitBtn.disabled = false;
 }
 

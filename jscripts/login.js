@@ -16,9 +16,9 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// Redirect if already logged in
+// Redirect if already logged in AND email verified
 onAuthStateChanged(auth, (user) => {
-  if (user) {
+  if (user && user.emailVerified) {
     window.location.href = '/htmls/home.html';
   }
 });
@@ -71,6 +71,18 @@ form.addEventListener('submit', async (e) => {
 
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Check if email is verified
+    if (!user.emailVerified) {
+      errorMsg.textContent = 'Please verify your email first. Check your inbox for the verification link.';
+      errorMsg.classList.add('show');
+      await auth.signOut(); // Log them out since email not verified
+      loginBtn.disabled = false;
+      loginBtn.innerHTML = '<span>Sign In</span><i class="fas fa-arrow-right"></i>';
+      return;
+    }
+
     window.location.href = '/htmls/home.html';
   } catch (err) {
     errorMsg.textContent = 'Email or Password is INCORRECT!';
