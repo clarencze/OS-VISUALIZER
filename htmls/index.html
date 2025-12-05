@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operating System - Home</title>
+    <title>OS Visualizer - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -13,7 +13,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-server"></i>
-                <span>OS History</span>
+                <span>OS Visualizer</span>
             </div>
             <button class="nav-toggle" aria-label="Toggle menu">
                 <span></span>
@@ -22,15 +22,16 @@
             </button>
             <ul class="nav-menu">
                 <li><a href="#" class="nav-item active">Home</a></li>
-                <li><a href="/htmls/explore.html" class="nav-item">Explore</a></li>
-                <li><a href="/htmls/login.html" class="nav-item nav-btn">Sign In</a></li>
+                <li><a href="#explore-section" class="nav-item">Explore</a></li>
+                <li><a href="#team-section" class="nav-item">Team</a></li>
+                <li><a href="../htmls/login.html" class="nav-item nav-btn">Sign In</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Background Video -->
     <video autoplay loop muted playsinline class="hero-video">
-        <source src="/visuals/background.mp4" type="video/mp4">
+        <source src="../visuals/background.mp4" type="video/mp4">
     </video>
 
     <!-- Hero Section -->
@@ -41,96 +42,259 @@
                 Operating<br><span class="gradient-text">System</span>
             </h1>
             <p class="hero-subtitle">Explore the evolution of computing history</p>
-            <a href="/htmls/explore.html" class="btn btn-primary btn-lg">
-                <span>Explore Now</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
+            <div class="hero-buttons">
+                <a href="../htmls/scheduling.html" class="btn btn-primary btn-lg">
+                    <span>Try Scheduler</span>
+                    <i class="fas fa-play"></i>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Members Section (replaces previous quick-links) -->
-    <section class="members-section">
+    <!-- Explore Section -->
+    <section id="explore-section" class="card-section">
+        <div class="container">
+            <div class="card card-primary">
+                <div class="card-body">
+                    <h2 class="card-title">The Evolution of Operating Systems</h2>
+                    <p class="card-text">
+                        The evolution of operating systems began in the 1950s with simple batch processing systems. Over time, OS technology advanced to include multitasking, graphical interfaces, and complex memory management. Today, operating systems power everything — from mobile devices to supercomputers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inventor Section -->
+    <section class="inventor-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Team & Contributors</h2>
+                <h2 class="section-title">Key Innovator</h2>
                 <div class="title-underline"></div>
             </div>
+            <div class="inventor-card">
+                <div class="inventor-image">
+                    <img src="../visuals/inventor.png" alt="Gary Kildall" class="inventor-photo">
+                </div>
+                <div class="inventor-content">
+                    <h3 class="inventor-name">Gary Kildall</h3>
+                    <p class="inventor-role">Creator of CP/M Operating System</p>
+                    <p class="inventor-description">
+                        Gary Kildall was a pioneering computer scientist who created CP/M (Control Program for Microcomputers), one of the first widely used operating systems for personal computers. His work laid the foundation for modern PC operating systems.
+                    </p>
+                    <div class="inventor-stats">
+                        <div class="stat">
+                            <span class="stat-number">1974</span>
+                            <span class="stat-label">CP/M Created</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Years Legacy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="members-grid">
-                <div class="link-card member-card">
-                    <div class="link-icon">
-                        <img src="members/member1.jpg" alt="Member 1" class="member-avatar" onerror="this.style.display='none'">
+    <!-- OS Evolution Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">OS Evolution</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Batch Processing</h3>
+                    <p>Early mainframe systems processing jobs sequentially</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-window-restore"></i>
+                    </div>
+                    <h3>Multitasking</h3>
+                    <p>Multiple programs running simultaneously on a single system</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Distributed Systems</h3>
+                    <p>Computing resources spread across multiple networked machines</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Microkernel Architecture</h3>
+                    <p>Modern OS design with minimal core functionality</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security & Virtualization</h3>
+                    <p>Advanced protection mechanisms and virtual machine support</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile & IoT</h3>
+                    <p>Operating systems optimized for portable and embedded devices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Historical Timeline</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">1950s</div>
+                    <div class="timeline-content">
+                        <h4>Batch Processing Era</h4>
+                        <p>UNIVAC and IBM mainframes dominate computing</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1970s</div>
+                    <div class="timeline-content">
+                        <h4>Unix & CP/M</h4>
+                        <p>Portable operating systems emerge for mini and microcomputers</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1980s</div>
+                    <div class="timeline-content">
+                        <h4>Personal Computing</h4>
+                        <p>MS-DOS and Apple Macintosh bring OS to consumer market</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1990s</div>
+                    <div class="timeline-content">
+                        <h4>Graphical Interfaces</h4>
+                        <p>Windows 95 and Linux emerge as dominant platforms</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2000s</div>
+                    <div class="timeline-content">
+                        <h4>Cloud & Virtualization</h4>
+                        <p>Internet-scale systems and virtual machine technology</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020s</div>
+                    <div class="timeline-content">
+                        <h4>AI & Edge Computing</h4>
+                        <p>OS innovations for AI workloads and edge devices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team/Members Section -->
+    <section id="team-section" class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Passionate developers creating OS visualizations</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-card-image">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h3>Member One</h3>
-                    <p>Project lead — OS historian & curator.</p>
-                    <div class="member-socials">
-                        <a href="#" aria-label="Member One GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" aria-label="Member One Twitter"><i class="fab fa-twitter"></i></a>
+                    <h3 class="team-name">Dongkik</h3>
+                    <p class="team-role">Full Stack Developer</p>
+                    <p class="team-bio">Expert in OS algorithms and system design with 5+ years of experience</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
 
-                <div class="link-card member-card">
-                    <div class="link-icon">
-                        <img src="members/member2.jpg" alt="Member 2" class="member-avatar" onerror="this.style.display='none'">
+                <div class="team-card">
+                    <div class="team-card-image">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h3>Member Two</h3>
-                    <p>Content writer — OS timelines and articles.</p>
-                    <div class="member-socials">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <h3 class="team-name">Dongkik</h3>
+                    <p class="team-role">UI/UX Designer</p>
+                    <p class="team-bio">Creating intuitive interfaces for complex systems with beautiful design</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
 
-                <div class="link-card member-card">
-                    <div class="link-icon">
-                        <img src="members/member3.jpg" alt="Member 3" class="member-avatar" onerror="this.style.display='none'">
+                <div class="team-card">
+                    <div class="team-card-image">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h3>Member Three</h3>
-                    <p>Frontend developer — UI & accessibility.</p>
-                    <div class="member-socials">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    <h3 class="team-name">Dongkik</h3>
+                    <p class="team-role">Backend Engineer</p>
+                    <p class="team-bio">Specializing in algorithm optimization and system performance</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
 
-                <div class="link-card member-card">
-                    <div class="link-icon">
-                        <img src="members/member4.jpg" alt="Member 4" class="member-avatar" onerror="this.style.display='none'">
+                <div class="team-card">
+                    <div class="team-card-image">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h3>Member Four</h3>
-                    <p>Backend engineer — data & APIs.</p>
-                    <div class="member-socials">
-                        <a href="#"><i class="fab fa-github"></i></a>
+                    <h3 class="team-name">Dongkik</h3>
+                    <p class="team-role">Data Analyst</p>
+                    <p class="team-bio">Analyzing system performance and creating insightful visualizations</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
 
-                <div class="link-card member-card">
-                    <div class="link-icon">
-                        <img src="members/member5.jpg" alt="Member 5" class="member-avatar" onerror="this.style.display='none'">
+                <div class="team-card">
+                    <div class="team-card-image">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h3>Member Five</h3>
-                    <p>Researcher — archival materials & sources.</p>
-                    <div class="member-socials">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <h3 class="team-name">Dongkik</h3>
+                    <p class="team-role">QA Engineer</p>
+                    <p class="team-bio">Ensuring quality and reliability across all visualization features</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
 
-                <div class="link-card member-card">
-                    <div class="link-icon">
-                        <img src="members/member6.jpg" alt="Member 6" class="member-avatar" onerror="this.style.display='none'">
+                <div class="team-card">
+                    <div class="team-card-image">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h3>Member Six</h3>
-                    <p>Community manager — events & outreach.</p>
-                    <div class="member-socials">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    <h3 class="team-name">Dongkik</h3>
+                    <p class="team-role">DevOps Engineer</p>
+                    <p class="team-bio">Managing infrastructure and deployment for seamless performance</p>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -140,15 +304,33 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; JDAJDJAJD OS History. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <div class="footer-section">
+                <h4>OS Visualizer</h4>
+                <p>Learn operating system concepts through interactive visualizations</p>
             </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#explore-section">Explore</a></li>
+                    <li><a href="../htmls/scheduling.html">Scheduler</a></li>
+                    <li><a href="../htmls/page-replacement.html">Page Replacement</a></li>
+                    <li><a href="#team-section">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 OS Visualizer. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="/jscripts/script.js"></script>
+    <script src="../jscripts/script.js"></script>
 </body>
 </html>
