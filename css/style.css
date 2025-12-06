@@ -1251,6 +1251,7 @@ body {
   /* Card */
   .card {
     padding: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .card-title {
@@ -1547,68 +1548,6 @@ body {
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .timeline {
-  position: relative;
-  padding: 2rem 0;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--primary), var(--accent));
-  transform: translateX(-1px);
-}
-
-.timeline-item {
-  display: flex;
-  margin-bottom: 3rem;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease-out forwards;
-  min-height: 120px;
-}
-.timeline-date {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  text-align: center;
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 1.1rem;
-  background: var(--darker);
-  padding: 0.5rem;
-  border-radius: 50px;
-  border: 2px solid var(--primary);
-  z-index: 10;
-}
-
-.timeline-content {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  transition: var(--transition);
-  flex: 1;
-  text-align: center;
-}
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .timeline::before {
-    left: 0;
-  }
-
-  .timeline-item {
-    flex-direction: row !important;
-    padding-left: 50px !important;
-  }
 
   .footer-content {
     grid-template-columns: repeat(2, 1fr);
@@ -1768,7 +1707,7 @@ body {
 
   /* ===== HERO ===== */
   .hero {
-    height: 900px;
+    height: 600px;
   }
   .hero-overlay {
     width: 100%;
@@ -1778,7 +1717,11 @@ body {
   }
   .hero-video {
     display: block;
-    height: 970px;
+    height: 670px;
+  }
+
+  .card-primary {
+    margin-bottom: 3rem;
   }
 
   .hero-title {
@@ -2023,6 +1966,54 @@ body {
 
   .inventor-content {
     flex: 1;
+    text-align: left;
+  }
+}
+
+/* Quick mobile override for .timeline — place at end of css/style.css */
+@media (max-width: 480px) {
+  .timeline {
+    padding: 1rem 0;
+  }
+
+  /* move vertical line to the left and make it slightly thicker for touch */
+  .timeline::before {
+    left: 8px;
+    width: 3px;
+    transform: none;
+  }
+
+  /* stack each timeline item full width */
+  .timeline-item {
+    flex-direction: column !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+    align-items: stretch;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    min-height: auto;
+    margin-bottom: 1.25rem;
+  }
+
+  /* show the date above the content and make it inline */
+  .timeline-date {
+    position: relative !important;
+    left: 0 !important;
+    transform: none !important;
+    width: auto !important;
+    display: inline-block;
+    margin: 0 0 0.5rem 0;
+    border-radius: 8px;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .timeline-content {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    padding: 1rem;
     text-align: left;
   }
 }
