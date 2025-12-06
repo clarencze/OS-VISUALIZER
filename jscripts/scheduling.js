@@ -44,6 +44,11 @@ onAuthStateChanged(auth, (user) => {
   const processTableBody = document.getElementById('process-tbody');
   const logoutBtn = document.getElementById('btn-logout');
 
+  // Initialize default process name input (auto-fill p1, p2, ...)
+  if (processNameInput && processNameInput.value.trim() === '') {
+    processNameInput.value = 'P' + (insertCounter + 1);
+  }
+
   algoButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       algoButtons.forEach(b => b.classList.remove('active'));
@@ -53,13 +58,18 @@ onAuthStateChanged(auth, (user) => {
   });
 
   addProcessBtn.addEventListener('click', () => {
-    const name = processNameInput.value.trim();
+    let name = processNameInput.value.trim();
     const arrival = parseInt(arrivalTimeInput.value, 10);
     const burst = parseInt(burstTimeInput.value, 10);
 
-    if (!name || isNaN(burst) || burst <= 0 || isNaN(arrival) || arrival < 0) {
-      alert('Please fill valid Process Name, Arrival (>=0) and Burst (>0)');
+    // Validate arrival and burst only. If name is empty, auto-generate one.
+    if (isNaN(burst) || burst <= 0 || isNaN(arrival) || arrival < 0) {
+      alert('Please fill valid Arrival (>=0) and Burst (>0)');
       return;
+    }
+
+    if (!name) {
+      name = 'P' + (insertCounter + 1);
     }
 
     processes.push({
@@ -70,7 +80,8 @@ onAuthStateChanged(auth, (user) => {
       order: insertCounter++
     });
     renderProcessTable();
-    processNameInput.value = '';
+    // After adding, set input to the next auto-name (overwrite so user sees next default)
+    processNameInput.value = 'p' + (insertCounter + 1);
     arrivalTimeInput.value = '0';
     burstTimeInput.value = '';
     runAlgoBtn.disabled = false;
