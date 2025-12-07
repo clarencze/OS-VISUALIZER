@@ -81,10 +81,87 @@
                 <div class="checkbox-group">
                     <input type="checkbox" id="terms" required>
                     <label for="terms" class="checkbox-label">
-                        I agree to the <a href="#" id="openTerms" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>
+                        I agree to the 
+                        <a href="#" id="openTerms" class="link">Terms of Service</a> 
+                        and 
+                        <a href="#" id="openPrivacy" class="link">Privacy Policy</a>
                     </label>
                 </div>
+                <!-- Popup Modal Structure -->
+                <div id="termsModal" class="modal">
+                    <div class="modal-content large">
+                    <span class="close" id="closeTerms">&times;</span>
+                    <h2>Terms of Service</h2>
+                    <ul>
+                    <li>
+                        <strong>Acceptance</strong><br>
+                        By using this website, you agree to these Terms of Service.
+                    </li>
+                    <li>
+                        <strong>Purpose</strong><br>
+                        This site provides educational tools to visualize operating system scheduling algorithms 
+                        and page replacement techniques. It is for learning and research only.
+                    </li>
+                    <li>
+                        <strong>User Responsibilities</strong>
+                        <ul>
+                        <li>Use the site for lawful, educational purposes.</li>
+                        <li>Do not misuse or attempt to exploit the tools.</li>
+                        <li>Do not input sensitive or personal data.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Intellectual Property</strong><br>
+                        All content and visualizations belong to the site owner. You may share results for academic use with proper credit.
+                    </li>
+                    <li>
+                        <strong>Disclaimer</strong><br>
+                        The site is provided “as is.” Visualizations are simplified and may not cover all real-world cases. No warranties are given.
+                    </li>
+                    <li>
+                        <strong>Liability</strong><br>
+                        The site owner is not responsible for damages or losses resulting from use of the Service.
+                    </li>
+                    <li>
+                        <strong>Privacy</strong><br>
+                        Inputs are processed only for visualization and are not stored permanently.
+                    </li>
+                    <li>
+                        <strong>Changes</strong><br>
+                        Terms may be updated at any time. Continued use means you accept the changes.
+                    </li>
+                    </ul>
+                    </div>
+                </div>
 
+                <div id="privacyModal" class="modal">
+                    <div class="modal-content large">
+                    <span class="close" id="closePrivacy">&times;</span>
+                    <h2>Privacy Policy</h2>
+                    <ul>
+                    <li>
+                        <strong>Information Use</strong><br>
+                        This site processes the data you enter (such as process details or page references) only to generate visualizations.
+                    </li>
+                    <li>
+                        <strong>No Personal Data</strong><br>
+                        We do not collect or store personal information. Please avoid entering sensitive data.
+                    </li>
+                    <li>
+                        <strong>Temporary Processing</strong><br>
+                        Inputs are handled in real time and are not saved permanently on our servers.
+                    </li>
+                    <li>
+                        <strong>Cookies & Analytics</strong><br>
+                        Basic usage data may be collected to improve site performance, but it is anonymous.
+                    </li>
+                    <li>
+                        <strong>Policy Changes</strong><br>
+                        This Privacy Policy may be updated. Continued use of the site means you accept any changes.
+                    </li>
+                    </ul>
+                    </div>
+                </div>
                 <button type="submit" class="register-btn" id="submit">
                     <span>Create Account</span>
                     <i class="fas fa-arrow-right"></i>

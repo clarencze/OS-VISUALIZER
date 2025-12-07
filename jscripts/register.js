@@ -128,17 +128,23 @@ function showError(msg, isSuccess = false){
 }
 
 // Terms modal
-document.getElementById('openTerms').onclick = e => {
-    e.preventDefault();
-    document.getElementById('termsModal').style.display = 'block';
+document.getElementById("openTerms").onclick = function(e) {
+  e.preventDefault();
+  document.getElementById("termsModal").style.display = "block";
+};
+document.getElementById("openPrivacy").onclick = function(e) {
+  e.preventDefault();
+  document.getElementById("privacyModal").style.display = "block";
+};
+document.getElementById("closeTerms").onclick = function() {
+  document.getElementById("termsModal").style.display = "none";
+};
+document.getElementById("closePrivacy").onclick = function() {
+  document.getElementById("privacyModal").style.display = "none";
 };
 
-document.getElementById('closeTerms').onclick = () => {
-    document.getElementById('termsModal').style.display = 'none';
-};
-
-window.onclick = e => {
-    if (e.target === document.getElementById('termsModal')) {
-        document.getElementById('termsModal').style.display = 'none';
-    }
+window.onclick = function(event) {
+  if (event.target.classList.contains("modal")) {
+    event.target.style.display = "none";
+  }
 };
