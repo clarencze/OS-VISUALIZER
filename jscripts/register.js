@@ -127,6 +127,58 @@ function showError(msg, isSuccess = false){
     submitBtn.disabled = false;
 }
 
+//ang lakas ng password mo kua
+const passwordInput = document.getElementById('password');
+const strengthText = document.querySelector('.strength-text');
+
+passwordInput.addEventListener('input', () => {
+    const p = passwordInput.value;
+    let score = 0;
+
+    if (p.length >= 6) score++;
+    if (/[A-Z]/.test(p)) score++;
+    if (/[0-9]/.test(p)) score++;
+    if (/[^A-Za-z0-9]/.test(p)) score++;
+
+    passwordInput.classList.remove('strength-weak','strength-medium','strength-strong');
+
+    if (p.length === 0) {
+        strengthText.textContent = 'Password Strength';
+    }
+    else if (score <= 1) {
+        passwordInput.classList.add('strength-weak');
+        strengthText.textContent = 'Weak';
+    } else if (score === 2 || score === 3) {
+        passwordInput.classList.add('strength-medium');
+        strengthText.textContent = 'Medium';
+    } else {
+        passwordInput.classList.add('strength-strong');
+        strengthText.textContent = 'Strong';
+    }
+});
+
+const pass = document.getElementById("password");
+const bar = document.querySelector(".strength-bar");
+const text = document.querySelector(".strength-text");
+
+pass.addEventListener("input", () => {
+  let v = pass.value;
+  let s = 0;
+
+  if (v.length >= 6) s++;
+  if (/[A-Z]/.test(v)) s++;
+  if (/[0-9]/.test(v)) s++;
+  if (/[^A-Za-z0-9]/.test(v)) s++;
+
+  let width = ["0%", "25%", "50%", "75%", "100%"][s];
+  let color = ["", "red", "orange", "yellow", "lime"][s];
+  let label = ["Weak", "Weak", "Okay", "Strong", "Very Strong"][s];
+
+  bar.style.setProperty("--bar-width", width);
+  bar.style.setProperty("--bar-color", color);
+  text.textContent = label;
+});
+
 // Terms modal
 document.getElementById("openTerms").onclick = function(e) {
   e.preventDefault();

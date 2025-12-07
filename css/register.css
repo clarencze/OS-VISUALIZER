@@ -240,8 +240,8 @@ body {
   content: '';
   display: block;
   height: 100%;
-  width: 0;
-  background: var(--danger);
+  width: var(--bar-width, 0);
+  background: var(--bar-color, red);
   transition: var(--transition);
 }
 
