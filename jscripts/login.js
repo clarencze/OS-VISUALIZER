@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserLocalPersistence, browserSessionPersistence, } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBEFCfRwjnkfOBvnIEch0lDbAIB9cyVCNY",
@@ -15,6 +15,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const email = document.getElementById("email");
+const pass = document.getElementById("password");
+const remember = document.getElementById("remember");
+const btn = document.getElementById("login-btn");
 
 // Redirect if already logged in AND email verified
 onAuthStateChanged(auth, (user) => {
@@ -90,4 +94,19 @@ form.addEventListener('submit', async (e) => {
     loginBtn.disabled = false;
     loginBtn.innerHTML = '<span>Sign In</span><i class="fas fa-arrow-right"></i>';
   }
+});
+
+//remember me  tho i have to say goodbye
+btn.addEventListener("click", e => {
+  const persistence = remember.checked 
+    ? browserLocalPersistence 
+    : browserSessionPersistence;
+
+  setPersistence(auth, persistence).then(() => {
+    return signInWithEmailAndPassword(auth, email.value, pass.value);
+  }).then(() => {
+    window.location.href = "dashboard.html";
+  }).catch(err => {
+    console.log(err.message);
+  });
 });
