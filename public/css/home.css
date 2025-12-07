@@ -28,6 +28,9 @@
   position: sticky;
   top: 0;
 }
+.home-header.hidden {
+  transform: translateY(-100%);
+}
 
 .header-container {
   max-width: 1400px;
@@ -511,6 +514,16 @@
 
 /* ========== MOBILE BREAKPOINT (480px and below) ========== */
 @media (max-width: 480px) {
+    .btn-logout {
+    position: absolute; 
+    top: 30px;          
+    right: 10px;         
+    width: auto;         
+    padding: 4px 10px; 
+    font-size: 12px;   
+    gap: 3px;          
+    border-radius: 6px; 
+  }
   .home-header {
     padding: 16px 0;
   }

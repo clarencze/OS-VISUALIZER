@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -201,9 +201,9 @@ onAuthStateChanged(auth, (user) => {
     }
   }
 
-  logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('userName');
-    window.location.href = 'login.html';
+    logoutBtn.addEventListener('click', async () => {
+    await signOut(auth);
+    window.location.href = '../index.html';
   });
 })();
 

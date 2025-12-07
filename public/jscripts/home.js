@@ -104,3 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = "../index.html";
     });
 });
+
+let lastScroll = 0;
+const header = document.querySelector(".home-header");
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll === 0) {
+    header.classList.remove("hidden");
+  } else if (currentScroll > lastScroll) {
+    header.classList.add("hidden");
+  } else {
+    header.classList.add("hidden");
+  }
+
+  lastScroll = currentScroll;
+});
