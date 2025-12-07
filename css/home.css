@@ -431,27 +431,9 @@
 }
 
 .home-footer p {
-  margin: 0 0 12px 0;
   font-size: 14px;
 }
 
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.footer-link {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.3s ease;
-  font-size: 13px;
-}
-
-.footer-link:hover {
-  color: var(--primary);
-}
 
 /* ========== TABLET BREAKPOINT (768px and below) ========== */
 @media (max-width: 768px) {
@@ -525,9 +507,6 @@
     padding: 12px;
   }
 
-  .footer-links {
-    gap: 16px;
-  }
 }
 
 /* ========== MOBILE BREAKPOINT (480px and below) ========== */
@@ -667,17 +646,8 @@
 
   .home-footer p {
     font-size: 12px;
-    margin-bottom: 8px;
   }
 
-  .footer-links {
-    gap: 12px;
-    font-size: 12px;
-  }
-
-  .footer-link {
-    font-size: 12px;
-  }
 }
 
 /* ========== SMALL MOBILE BREAKPOINT (360px and below) ========== */

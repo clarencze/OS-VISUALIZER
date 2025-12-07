@@ -1,7 +1,15 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, setPersistence, browserLocalPersistence, browserSessionPersistence, } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBEFCfRwjnkfOBvnIEch0lDbAIB9cyVCNY",
   authDomain: "ostangek.firebaseapp.com",
@@ -15,42 +23,41 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const email = document.getElementById("email");
-const pass = document.getElementById("password");
+
+// Elements
+const emailInput = document.getElementById("email");
+const passField = document.getElementById("password");
+const showPass = document.querySelector(".password-toggle");
 const remember = document.getElementById("remember");
-const btn = document.getElementById("login-btn");
+const loginBtn = document.getElementById("login");
+const errorMsg = document.querySelectorAll(".input-error")[1];
+const form = document.querySelector(".login-form");
 
-const passField = document.getElementById('password');
-const showPass = document.querySelector('.password-toggle');
-const loginBtn = document.getElementById('login');
-const emailInput = document.getElementById('email');
-const errorMsg = document.querySelectorAll('.input-error')[1]; 
-const form = document.querySelector('.login-form');
-
-
-showPass.addEventListener('click', (e) => {
+// Password toggle
+showPass.addEventListener("click", (e) => {
   e.preventDefault();
-  const icon = showPass.querySelector('i');
-  if (passField.type === 'password') {
-    passField.type = 'text';
-    icon.classList.replace('fa-eye', 'fa-eye-slash');
+  const icon = showPass.querySelector("i");
+  if (passField.type === "password") {
+    passField.type = "text";
+    icon.classList.replace("fa-eye", "fa-eye-slash");
   } else {
-    passField.type = 'password';
-    icon.classList.replace('fa-eye-slash', 'fa-eye');
+    passField.type = "password";
+    icon.classList.replace("fa-eye-slash", "fa-eye");
   }
 });
 
-form.addEventListener('submit', async (e) => {
+// Form submit
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  errorMsg.textContent = '';
-  errorMsg.classList.remove('show');
+  errorMsg.textContent = "";
+  errorMsg.classList.remove("show");
 
   const email = emailInput.value.trim();
   const password = passField.value.trim();
 
   if (!email || !password) {
-    errorMsg.textContent = 'Please fill in both email and password!';
-    errorMsg.classList.add('show');
+    errorMsg.textContent = "Please fill in both email and password!";
+    errorMsg.classList.add("show");
     return;
   }
 
@@ -65,41 +72,26 @@ form.addEventListener('submit', async (e) => {
     const user = userCredential.user;
 
     if (!user.emailVerified) {
-      errorMsg.textContent = 'Please verify your email first.';
-      errorMsg.classList.add('show');
+      errorMsg.textContent = "Please verify your email first.";
+      errorMsg.classList.add("show");
       await auth.signOut();
       loginBtn.disabled = false;
       loginBtn.innerHTML = '<span>Sign In</span><i class="fas fa-arrow-right"></i>';
       return;
     }
 
-    window.location.href = '/htmls/home.html';
+    window.location.href = "/htmls/home.html";
   } catch (err) {
-    errorMsg.textContent = 'Email or Password is INCORRECT!';
-    errorMsg.classList.add('show');
+    errorMsg.textContent = "Email or Password is INCORRECT!";
+    errorMsg.classList.add("show");
     loginBtn.disabled = false;
     loginBtn.innerHTML = '<span>Sign In</span><i class="fas fa-arrow-right"></i>';
   }
 });
 
-//remember me  tho i have to say goodbye
-btn.addEventListener("click", e => {
-  const persistence = remember.checked 
-    ? browserLocalPersistence 
-    : browserSessionPersistence;
-
-  setPersistence(auth, persistence).then(() => {
-    return signInWithEmailAndPassword(auth, email.value, pass.value);
-  }).then(() => {
-    window.location.href = "dashboard.html";
-  }).catch(err => {
-    console.log(err.message);
-  });
-});
-
 // Redirect if already logged in AND email verified
 onAuthStateChanged(auth, (user) => {
   if (user && user.emailVerified) {
-    window.location.href = '/htmls/home.html';
+    window.location.href = "/htmls/home.html";
   }
 });

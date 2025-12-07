@@ -24,6 +24,9 @@
   top: 0;
   z-index: 100;
 }
+.algo-header.hidden {
+  transform: translateY(-100%);
+}
 
 .header-container {
   max-width: 1400px;
@@ -570,6 +573,16 @@
 }
 
 @media (max-width: 480px) {
+  .btn-logout {
+    position: absolute; 
+    top: 50px;          
+    right: 10px;         
+    width: auto;         
+    padding: 4px 10px; 
+    font-size: 12px;   
+    gap: 3px;          
+    border-radius: 6px; 
+  }
   .algo-title {
     font-size: 20px;
   }
@@ -602,4 +615,24 @@
   .gantt-chart {
     min-height: 50px;
   }
+}
+
+@media (min-width:1441px){
+.algo-footer {
+  background: linear-gradient(135deg, rgba(15, 20, 25, 0.95), rgba(10, 14, 23, 0.95));
+  border-top: 1px solid var(--border);
+  padding: 24px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+
+.algo-footer p {
+  margin: 0;
+  font-size: 14px;
+}
 }
