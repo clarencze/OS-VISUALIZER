@@ -104,7 +104,7 @@ document.getElementById('registrationForm').addEventListener('submit', async e =
                 // Clear pending registration
                 sessionStorage.removeItem('pendingRegistration');
                 // Redirect to home
-                window.location.href = "/htmls/home.html";
+                window.location.href = "../htmls/home.html";
             }
         }, 2000); // Check every 2 seconds
 

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     onAuthStateChanged(auth, async (user) => {
         if (!user ||!user.emailVerified) {
-            window.location.href = "/htmls/login.html"; // redirect if logged out
+            window.location.href = "../htmls/login.html"; // redirect if logged out
             return;
         }
 
@@ -101,6 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('btn-logout');
     logoutBtn.addEventListener('click', async () => {
         await signOut(auth);
-        window.location.href = "/htmls/index.html";
+        window.location.href = "../index.html";
     });
 });

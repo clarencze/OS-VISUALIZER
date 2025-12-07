@@ -80,7 +80,7 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
-    window.location.href = "/htmls/home.html";
+    window.location.href = "../htmls/home.html";
   } catch (err) {
     errorMsg.textContent = "Email or Password is INCORRECT!";
     errorMsg.classList.add("show");
@@ -92,6 +92,6 @@ form.addEventListener("submit", async (e) => {
 // Redirect if already logged in AND email verified
 onAuthStateChanged(auth, (user) => {
   if (user && user.emailVerified) {
-    window.location.href = "/htmls/home.html";
+    window.location.href = "../htmls/home.html";
   }
 });
