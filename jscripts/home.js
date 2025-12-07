@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const greetingEl = document.getElementById('greeting');
 
     onAuthStateChanged(auth, async (user) => {
-        if (!user) {
+        if (!user ||!user.emailVerified) {
             window.location.href = "/htmls/login.html"; // redirect if logged out
             return;
         }
@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ===== Keep your homepage functions =====
     function renderHistory(alg) {
         const ul = document.getElementById(`history-${alg}`);
         if (!ul) return;

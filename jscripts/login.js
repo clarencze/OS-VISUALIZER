@@ -20,19 +20,13 @@ const pass = document.getElementById("password");
 const remember = document.getElementById("remember");
 const btn = document.getElementById("login-btn");
 
-// Redirect if already logged in AND email verified
-onAuthStateChanged(auth, (user) => {
-  if (user && user.emailVerified) {
-    window.location.href = '/htmls/home.html';
-  }
-});
-
 const passField = document.getElementById('password');
 const showPass = document.querySelector('.password-toggle');
 const loginBtn = document.getElementById('login');
 const emailInput = document.getElementById('email');
 const errorMsg = document.querySelectorAll('.input-error')[1]; 
 const form = document.querySelector('.login-form');
+
 
 showPass.addEventListener('click', (e) => {
   e.preventDefault();
@@ -54,18 +48,8 @@ form.addEventListener('submit', async (e) => {
   const email = emailInput.value.trim();
   const password = passField.value.trim();
 
-  if (!email && !password) {
+  if (!email || !password) {
     errorMsg.textContent = 'Please fill in both email and password!';
-    errorMsg.classList.add('show');
-    return;
-  }
-  if (!email) {
-    errorMsg.textContent = 'Please enter a valid email!';
-    errorMsg.classList.add('show');
-    return;
-  }
-  if (!password) {
-    errorMsg.textContent = 'Please enter a password!';
     errorMsg.classList.add('show');
     return;
   }
@@ -74,14 +58,16 @@ form.addEventListener('submit', async (e) => {
   loginBtn.innerHTML = '<span>Signing in...</span><i class="fas fa-spinner fa-spin"></i>';
 
   try {
+    const persistence = remember.checked ? browserLocalPersistence : browserSessionPersistence;
+    await setPersistence(auth, persistence);
+
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-    // Check if email is verified
     if (!user.emailVerified) {
-      errorMsg.textContent = 'Please verify your email first. Check your inbox for the verification link.';
+      errorMsg.textContent = 'Please verify your email first.';
       errorMsg.classList.add('show');
-      await auth.signOut(); // Log them out since email not verified
+      await auth.signOut();
       loginBtn.disabled = false;
       loginBtn.innerHTML = '<span>Sign In</span><i class="fas fa-arrow-right"></i>';
       return;
@@ -109,4 +95,11 @@ btn.addEventListener("click", e => {
   }).catch(err => {
     console.log(err.message);
   });
+});
+
+// Redirect if already logged in AND email verified
+onAuthStateChanged(auth, (user) => {
+  if (user && user.emailVerified) {
+    window.location.href = '/htmls/home.html';
+  }
 });

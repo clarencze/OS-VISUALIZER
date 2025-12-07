@@ -18,7 +18,7 @@ const db = getFirestore(app);
 
 // Protect page: redirect if not logged in
 onAuthStateChanged(auth, (user) => {
-  if (!user) {
+  if (!user ||!user.emailVerified) {
     window.location.href = "/htmls/login.html"; // redirect logged-out users
   }
 });
