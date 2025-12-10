@@ -499,6 +499,8 @@ body {
   }
 
   .forgot-password {
+    position: absolute;
+    right: 1rem;
     font-size: 0.8rem;
   }
 

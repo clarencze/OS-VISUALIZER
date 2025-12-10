@@ -528,6 +528,13 @@
     padding: 16px 0;
   }
 
+  .hero-video {
+    height: 880px;
+  }
+  .hero-overlay {
+    height: 880px;
+  }
+
   .header-container {
     padding: 0 12px;
     gap: 12px;

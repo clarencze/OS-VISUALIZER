@@ -261,6 +261,7 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 /* Process/Memory Table */
@@ -573,6 +574,15 @@
 }
 
 @media (max-width: 480px) {
+  .hero{
+    height: 800px;
+  }
+  .hero-video {
+    height: 850px;
+  }
+  .hero-overlay {
+    height: 850px;
+  }
   .btn-logout {
     position: absolute; 
     top: 50px;          
@@ -614,6 +624,61 @@
 
   .gantt-chart {
     min-height: 50px;
+  }
+
+  /* Make tables responsive */
+  .process-table-container,
+  .scheduling-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .process-table,
+  .scheduling-table {
+    min-width: 400px;
+    font-size: 11px;
+  }
+
+  .process-table th,
+  .scheduling-table th,
+  .process-table td,
+  .scheduling-table td {
+    padding: 8px 6px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .remove-btn {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 460px) {
+  .scheduling-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+
+  .scheduling-table {
+    min-width: 500px;
+    display: table;
+  }
+
+  .scheduling-table th,
+  .scheduling-table td {
+    padding: 10px 8px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .scheduling-table th {
+    position: sticky;
+    top: 0;
+    background: rgba(14, 165, 169, 0.3);
+    z-index: 1;
   }
 }
 

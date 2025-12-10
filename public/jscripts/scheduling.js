@@ -81,7 +81,7 @@ onAuthStateChanged(auth, (user) => {
     });
     renderProcessTable();
     // After adding, set input to the next auto-name (overwrite so user sees next default)
-    processNameInput.value = 'p' + (insertCounter + 1);
+    processNameInput.value = 'P' + (insertCounter + 1);
     arrivalTimeInput.value = '0';
     burstTimeInput.value = '';
     runAlgoBtn.disabled = false;
