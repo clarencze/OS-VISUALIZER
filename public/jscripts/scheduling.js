@@ -16,10 +16,18 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// Block page until auth verified
+const authLoading = document.getElementById('auth-loading');
+
 // Protect page: redirect if not logged in
 onAuthStateChanged(auth, (user) => {
-  if (!user ||!user.emailVerified) {
-    window.location.href = "../htmls/login.html"; // redirect logged-out users
+  if (!user || !user.emailVerified) {
+    window.location.replace("../htmls/login.html"); // use replace to prevent back button
+    return;
+  }
+  // Auth verified - remove loading overlay
+  if (authLoading) {
+    authLoading.style.display = 'none';
   }
 });
 

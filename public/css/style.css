@@ -641,17 +641,25 @@ body {
   width: 100px;
   height: 100px;
   margin: 0 auto 1.5rem;
-  font-size: 4rem;
-  color: var(--primary);
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
   transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+}
+
+.team-card-image .team-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
 }
 
 .team-card:hover .team-card-image {
-  color: var(--accent);
-  transform: scale(1.1) rotate(-10deg);
+  transform: scale(1.05);
 }
 
 .team-name {
@@ -1398,7 +1406,8 @@ body {
   .team-card-image {
     width: 80px;
     height: 80px;
-    font-size: 3.5rem;
+    border-radius: 50%;
+    overflow: hidden;
   }
 
   .team-name {
