@@ -99,16 +99,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ========= AUTH GUARD =========
   let currentUser = null;
+  let authReady = false;
+  
   onAuthStateChanged(auth, (user) => {
     currentUser = user && user.emailVerified ? user : null;
+    authReady = true;
   });
 
-  function requireAuth(targetPath) {
+  async function requireAuth(targetPath) {
+    // Wait for auth state to be ready
+    if (!authReady) {
+      await new Promise(resolve => {
+        const unsubscribe = onAuthStateChanged(auth, () => {
+          unsubscribe();
+          resolve();
+        });
+      });
+    }
+
     if (!currentUser) {
-      // Prevent simple back bypass by replacing history before redirect
-      try {
-        history.replaceState({ guard: true }, document.title, location.href);
-      } catch {}
       window.location.href = "../htmls/login.html";
       return false;
     }
@@ -125,27 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Footer quick links (loaded in this page's footer)
+  // Footer quick links
   document.querySelectorAll('footer a[href$="scheduling.html"], footer a[href$="page-replacement.html"]').forEach(a => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
       const href = a.getAttribute('href');
       requireAuth(href);
     });
-  });
-
-
-  window.addEventListener('popstate', () => {
-    if (!currentUser) {
-      window.location.href = "../htmls/login.html";
-    }
-  });
-
-  // When tab becomes visible again , check auth state
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && !currentUser) {
-      // If user came back unauthenticated, enforce redirect
-      window.location.href = "../htmls/login.html";
-    }
   });
 });

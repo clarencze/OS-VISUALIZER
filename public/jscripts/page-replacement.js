@@ -18,11 +18,15 @@ const db = getFirestore(app);
 
 // Block page until auth verified
 const authLoading = document.getElementById('auth-loading');
+let authChecked = false;
 
-// Protect page: redirect if not logged in
+// Protect page: redirect if not logged in (only check once on initial load)
 onAuthStateChanged(auth, (user) => {
+  if (authChecked) return; // Don't re-check on subsequent auth state changes
+  authChecked = true;
+  
   if (!user || !user.emailVerified) {
-    window.location.replace("../htmls/login.html"); // use replace to prevent back button
+    window.location.replace("../htmls/login.html");
     return;
   }
   // Auth verified - remove loading overlay
