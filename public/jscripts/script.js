@@ -1,3 +1,19 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBEFCfRwjnkfOBvnIEch0lDbAIB9cyVCNY",
+  authDomain: "ostangek.firebaseapp.com",
+  projectId: "ostangek",
+  storageBucket: "ostangek.firebasestorage.app",
+  messagingSenderId: "609103081490",
+  appId: "1:609103081490:web:49159005342d820b47e8cb",
+  measurementId: "G-8WN4PR8E3D"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
 document.addEventListener('DOMContentLoaded', () => {
   const navToggle = document.querySelector('.nav-toggle');
   const navMenu = document.querySelector('.nav-menu');
@@ -80,4 +96,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Run once on load
   updateActiveNav();
+
+  // ========= AUTH GUARD =========
+  let currentUser = null;
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user && user.emailVerified ? user : null;
+  });
+
+  function requireAuth(targetPath) {
+    if (!currentUser) {
+      // Prevent simple back bypass by replacing history before redirect
+      try {
+        history.replaceState({ guard: true }, document.title, location.href);
+      } catch {}
+      window.location.href = "../htmls/login.html";
+      return false;
+    }
+    window.location.href = targetPath;
+    return true;
+  }
+
+  // CTA buttons in hero
+  const heroScheduler = document.querySelector('.hero-buttons a[href$="scheduling.html"]');
+  if (heroScheduler) {
+    heroScheduler.addEventListener('click', (e) => {
+      e.preventDefault();
+      requireAuth('../htmls/scheduling.html');
+    });
+  }
+
+  // Footer quick links (loaded in this page's footer)
+  document.querySelectorAll('footer a[href$="scheduling.html"], footer a[href$="page-replacement.html"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = a.getAttribute('href');
+      requireAuth(href);
+    });
+  });
+
+
+  window.addEventListener('popstate', () => {
+    if (!currentUser) {
+      window.location.href = "../htmls/login.html";
+    }
+  });
+
+  // When tab becomes visible again , check auth state
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && !currentUser) {
+      // If user came back unauthenticated, enforce redirect
+      window.location.href = "../htmls/login.html";
+    }
+  });
 });
