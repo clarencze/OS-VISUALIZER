@@ -221,12 +221,45 @@ onAuthStateChanged(auth, (user) => {
     const totalDuration = Math.max(1, maxEnd - minStart);
     const scale = Math.max(8, Math.min(30, 600 / totalDuration));
 
+    // Build top axis with tick labels at unique start/end times
+    const ganttSection = ganttChart.parentElement;
+    const existingAxis = ganttSection.querySelector('.gantt-axis');
+    if (existingAxis) existingAxis.remove();
+
+    const axis = document.createElement('div');
+    axis.className = 'gantt-axis';
+    const axisInner = document.createElement('div');
+    axisInner.className = 'gantt-axis-inner';
+    axisInner.style.width = (totalDuration * scale) + 'px';
+
+    const times = Array.from(new Set(schedule.flatMap(p => [p.start, p.end]))).sort((a, b) => a - b);
+    times.forEach(t => {
+      const tick = document.createElement('div');
+      tick.className = 'gantt-tick';
+      tick.textContent = t;
+      tick.style.left = ((t - minStart) * scale) + 'px';
+      axisInner.appendChild(tick);
+    });
+    axis.appendChild(axisInner);
+    ganttSection.insertBefore(axis, ganttChart);
+
+    // Sync axis scroll with chart scroll (mobile-friendly)
+    if (ganttChart._axisSync) {
+      ganttChart.removeEventListener('scroll', ganttChart._axisSync);
+    }
+    const syncScroll = () => {
+      axis.scrollLeft = ganttChart.scrollLeft;
+    };
+    ganttChart.addEventListener('scroll', syncScroll, { passive: true });
+    ganttChart._axisSync = syncScroll;
+
     schedule.forEach(p => {
       const block = document.createElement('div');
       block.className = 'gantt-block';
-      block.textContent = `${p.name} (${p.start}-${p.end})`;
+      // Show only process name; times are now on the top axis
+      block.innerHTML = `<span class="gantt-name">${p.name}</span>`;
       block.style.width = ((p.end - p.start) * scale) + 'px';
-      block.style.minWidth = '24px';
+      block.style.minWidth = '48px';
       ganttChart.appendChild(block);
     });
 

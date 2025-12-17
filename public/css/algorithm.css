@@ -375,28 +375,73 @@
   margin: 0 0 16px 0;
 }
 
+/* Top Axis for Gantt */
+.gantt-axis {
+  padding: 0 20px;
+  margin-bottom: 8px;
+  overflow-x: hidden; /* hide axis scrollbar; it follows chart scroll */
+  -webkit-overflow-scrolling: touch;
+}
+
+.gantt-axis-inner {
+  position: relative;
+  height: 26px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.gantt-tick {
+  position: absolute;
+  bottom: 2px;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
 .gantt-chart {
   display: flex;
-  gap: 4px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 8px;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
   overflow-x: auto;
-  min-height: 60px;
+  -webkit-overflow-scrolling: touch;
+  min-height: 72px;
+  border: 1px solid var(--border);
 }
 
 .gantt-block {
   flex-shrink: 0;
-  padding: 8px 12px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: var(--dark);
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 12px;
+  padding: 10px 12px 16px;
+  background: linear-gradient(135deg, rgba(14,165,169,0.25), rgba(0,212,255,0.15));
+  border: 1px solid rgba(0,212,255,0.35);
+  color: var(--text);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 60px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.gantt-name {
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+
+.gantt-time {
+  margin-top: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--secondary);
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 999px;
 }
 
 /* Memory Timeline - Landscape Layout */
